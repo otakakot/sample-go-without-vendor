@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [main]
 jobs:
-  build:
+  go-build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -17,3 +17,10 @@ jobs:
           cache: false
       - name: Build
         run: go build ./...
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+      - name: Build Docker image
+        run: docker build -t app .
